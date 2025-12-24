@@ -1,0 +1,1 @@
+<doc><label1>text1</label1><label2>text2</label2></doc>

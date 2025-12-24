@@ -1,0 +1,6 @@
+<doc><label1>
+word1 
+
+word2  
+
+</label1></doc>

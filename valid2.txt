@@ -1,0 +1,3 @@
+<doc>
+some text 
+</doc>
