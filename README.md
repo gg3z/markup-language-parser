@@ -19,19 +19,35 @@ A number of input files are included for testing purposes in the subdirectory `t
 Description and results of test cases (in ./test)
 
  valid_1.txt: basic pair of labels with no plain text
+
  valid_2.txt: basic pair of labels with one line of plain text on separate lines
+
  valid_3.txt: basic pair of labels with one line of text, all on the same line
+
  valid_4.txt: two pairs of labels with no plain text, all on the same line
+
  valid_5.txt: basic pair of labels with two lines of plain text, all on separate lines
+
  valid_6.txt: basic pair of labels with four lines of plain text, all on separate lines
+
  valid_7.txt: three pairs of labels with plain text, all on the same line
+
  valid_8.txt: three pairs of nested labels with plain text, all on the same line
 
+
  invalid_1.txt: invalid character in line 1 col 5 (should be '>')
+
  invalid_2.txt: missing character in line 1 col 5 (should be '>')
+
  invalid_3.txt: invalid whitespace in line 1, col 4
+
  invalid_4.txt: whitespace in line 1 col 1 (ok), invalid character in col 2 (should be '<')
+
  invalid_5.txt: invalid character in line 2, col 5 in plain text  ('/')
+
  invalid_6.txt: invalid label in line 3 col 3 (should be 'l' given the previous characters)
+
  invalid_7.txt: missing last label (</doc>)
+
  invalid_8.txt: invalid label in line 1 col 41 (should be '2' given the previous characters)
+ 
