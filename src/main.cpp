@@ -26,23 +26,30 @@ int main(int argc, char* argv[])
   {
     fname = argv[1];
   }
-
+  
   ifstream fin(fname);
   if( !fin )
   {
     cout << "Unable to open input file\n";
     return -1;
   }
+
+  // cout << fin_to_fout(fname) << endl;
   // test_chop();
   // test_bfs();
   // test_valid_element();
   // test_matching_labels();
-#if 1
   auto all_plain_text = parseFile(fin);
-  // cout << " output has " << all_plain_text.size() << " lines\n";
+
+  string fout_name = fin_to_fout(fname);
+  // cout << fout_name << endl;
+  ofstream fout(fout_name.c_str());
+  if(!fout)
+    cout << "unable to write to selected file\n";
   for( const auto &s : all_plain_text )
-    cout << s << endl;
-#endif
+    fout << s << endl;
+  fout.close();
+  
   fin.close();
   return 0;
 }

@@ -24,7 +24,8 @@ struct Element
     string s;
     StringType type()
     {
-        return s.starts_with('<') ? (s[1] == '/' ? StringType::endlabel : StringType::label) : StringType::plain_text;
+        // return s.starts_with('<') ? (s[1] == '/' ? StringType::endlabel : StringType::label) : StringType::plain_text;
+        return s.front() == '<' ? (s[1] == '/' ? StringType::endlabel : StringType::label) : StringType::plain_text;
     }
 };
 
@@ -45,6 +46,8 @@ struct lineResult
     }
 };
 
+string fin_to_fout(const string &fin); // just changes suffix from "*" to "out"
+
 // basic string chopping - not used in this code
 vector<string> chop(const string &s, char delim = ' ');
 
@@ -55,10 +58,12 @@ lineResult parseLine(int line_num, const string& line);
 
 vector<string> parseFile(ifstream &fin);
 
+int first_non_whitespace(const string &s);
 bool valid_piece(const string &piece);
 int invalid_column(const string &piece);
 
-bool matching_labels(const string &label, const string &endlabel);
+int max_match(const string &s1, const string &s2);
+int matching_labels(const string &label, const string &endlabel);
 
 void test_chop();
 void test_valid_element();

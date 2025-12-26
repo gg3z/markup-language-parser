@@ -1,13 +1,22 @@
 #include "parse-util.h"
-#include "tree-util.hpp"
 
-#include <stack>
-#include <unordered_set>
+#include <string>
 #include <cassert>
 
 using namespace std;
 
 #define DEBUG 0
+
+string fin_to_fout(const string &fin)
+{
+  vector<string> pieces = chop(fin, '.');
+  // for(const auto &p : pieces) { cout << p << endl; }
+  // sanity check: if the extension is already ".out", return an empty string
+  if( pieces.back() == string("out") )
+    return string("");
+  // Also handle "./filename" vs "filename"
+  return (fin.front() == '.' ? string(".") : string("")) + pieces.front() + string(".out");
+}
 
 static bool is_delimiter(char c, vector<char> &delim)
 {
@@ -15,6 +24,16 @@ static bool is_delimiter(char c, vector<char> &delim)
     if( c == d )
       return true;
   return false;
+}
+
+int first_non_whitespace(const string &s)
+{
+  int n = 0;
+  while( n < s.size() && s[n] == ' ' )
+  {
+    ++n;
+  }
+  return n;
 }
 
 // delimiter is not included in the output
@@ -29,7 +48,7 @@ vector<string> chop(const string &s, char delim)
     if( c == delim && last != delim ) // end of result substring
     {
       pieces.emplace_back(s.substr(beg, end - beg));
-      cout << pieces.back() << ", ";
+      // cout << pieces.back() << ", ";
       beg = end;
     }
     else if( c != delim && last == delim ) // start of result substring
@@ -40,7 +59,7 @@ vector<string> chop(const string &s, char delim)
   if( end > beg )
   {
     pieces.emplace_back(s.substr(beg, end - beg));
-    cout << pieces.back() << endl;
+    // cout << pieces.back() << endl;
   }
 
   return pieces;
@@ -165,7 +184,18 @@ int invalid_column(const string &piece)
   return -1;
 }
 
-bool matching_labels(const string &label, const string &endlabel)
+int max_match(const string &s1, const string &s2)
 {
-    return label.substr(1, label.size() - 2) == endlabel.substr(2, endlabel.size() - 3);
+  int k = 0., max = min(s1.size(), s2.size());
+  while( k < max && s1[k] == s2[k] )
+  {
+    ++k;
+  }
+  return k;
+}
+
+int matching_labels(const string &label, const string &endlabel)
+{
+    // return label.substr(1, label.size() - 2) == endlabel.substr(2, endlabel.size() - 3);
+    return max_match(label.substr(1, label.size() - 2), endlabel.substr(2, endlabel.size() - 3));
 }

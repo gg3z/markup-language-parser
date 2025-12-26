@@ -1,4 +1,5 @@
 #pragma once
+#include "parse-util.h"
 
 #include <vector>
 #include <string>
@@ -22,13 +23,13 @@ struct Tree
     // which are the plain text
     vector<string> BF_all_plain_text()
     {
+
         if( root == nullptr )
             return vector<string>{};
 
         vector<string> all_strings;
         deque<shared_ptr<Node>> dq;
         dq.emplace_back(root);
-        // all_strings.emplace_back(root->p->s);
         while( !dq.empty() )
         {
             auto n = dq.size();
@@ -37,7 +38,7 @@ struct Tree
                 auto cN = dq.front();
                 if( cN != nullptr )
                 {
-                    if( cN->children.empty() && !(cN->p->s.starts_with('<')) )
+                    if( cN->children.empty() && cN->p->s.front() != '<' )
                         all_strings.emplace_back(cN->p->s);
                     else
                     {

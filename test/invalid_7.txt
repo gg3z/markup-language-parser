@@ -1,0 +1,4 @@
+<doc>
+<label1>
+missing last label
+</label1>
