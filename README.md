@@ -16,6 +16,8 @@ This project also satisfies the following requirements:
 
 A number of input files are included for testing purposes in the subdirectory `test`, as well as their output in subdirectory `test/result` (e.g., 'valid_1.out' is the output of 'valid_1.txt')
 
+Note: this repo has been built on Linux Ubuntu 24.04 and Windows 10/11
+
 Description and results of test cases (in ./test)
 
  valid_1.txt: basic pair of labels with no plain text
@@ -34,6 +36,8 @@ Description and results of test cases (in ./test)
 
  valid_8.txt: three pairs of nested labels with plain text, all on the same line
 
+ valid_9.txt: 20 pairs of labels with plain text
+
 
  invalid_1.txt: invalid character in line 1 col 5 (should be '>')
 
@@ -51,3 +55,4 @@ Description and results of test cases (in ./test)
 
  invalid_8.txt: invalid label in line 1 col 41 (should be '2' given the previous characters)
  
+ invalid_9.txt: 20 pairs of labels with plain text and one incorrect label at line 55, col 7
