@@ -3,4 +3,4 @@ cd ./test
 echo "$(pwd)"
 EXECUTABLE="../build/RelWithDebInfo/mlparser"
 
-$EXECUTABLE "./invalid_8.txt"
+$EXECUTABLE "./invalid_9.txt"

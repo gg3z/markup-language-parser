@@ -107,8 +107,10 @@ vector<string> parseFile(ifstream &fin)
           col = p->col;
           break;
         }
+        // cout << "top of stack = (" << stack.top()->p->s << "), current label = (" << p->s << ")\n";
         int max_match = matching_labels(stack.top()->p->s, p->s);
-        if( max_match < stack.top()->p->s.size() - 1 )
+        // cout << "max_match = " << max_match << endl;
+        if( max_match < stack.top()->p->s.size() - 2 ) // don't count the angle brackets
         {
           col = p->col + max_match + 2; // count "</" because p is an endlabel
           break;
@@ -168,7 +170,7 @@ vector<string> parseFile(ifstream &fin)
   // cout << "column = " << col << endl;
   if( col < 0 )
   {
-    if( stack.empty() )
+    if( stack.empty() ) // stack should be empty
       return T.BF_all_plain_text();
     col = 0;
     ++line_num; // there should be at least one more line
